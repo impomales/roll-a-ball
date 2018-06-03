@@ -1,0 +1,11 @@
+{
+  "name": "roll-a-ball",
+  "version": "1.0.0",
+  "description": "simple 3d game for getting started with BabylonJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Isaias Pomales",
+  "license": "ISC"
+}
