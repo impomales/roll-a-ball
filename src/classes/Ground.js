@@ -4,7 +4,11 @@ import GameObject from './GameObject';
 export default class Ground extends GameObject {
   constructor(size, game) {
     super('ground', game);
-    const vertexData = BABYLON.VertexData.CreatePlane({ size });
+    const vertexData = BABYLON.VertexData.CreateBox({
+      width: size,
+      height: size,
+      depth: 0.05
+    });
     vertexData.applyToMesh(this);
     // create walls
     const northWall = new BABYLON.MeshBuilder.CreateBox(
