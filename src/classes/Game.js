@@ -1,4 +1,5 @@
 import * as BABYLON from "babylonjs";
+import Ground from "./Ground";
 
 export default class Game {
   constructor(canvasId) {
@@ -11,7 +12,7 @@ export default class Game {
     // set up a camera.
     this.camera = new BABYLON.FreeCamera(
       "camera",
-      new BABYLON.Vector3(-5, 5, -5),
+      new BABYLON.Vector3(-15, 10, -15),
       this.scene
     );
     // sets where the camera is looking at.
@@ -26,6 +27,9 @@ export default class Game {
     );
     // box
     this.cube = new BABYLON.Mesh.CreateBox("box", 1, this.scene);
+    this.cube.position.y = 1;
+    this.ground = new Ground(20, this.scene);
+    this.ground.rotation.x = Math.PI / 2;
     // renders the scene 60 fps.
     this.engine.runRenderLoop(() => {
       this.scene.render();
