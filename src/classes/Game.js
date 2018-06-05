@@ -10,11 +10,19 @@ export default class Game {
     // create a scene.
     this.scene = new BABYLON.Scene(this.engine);
     // set up a camera.
-    this.camera = new BABYLON.FreeCamera(
+    this.camera = new BABYLON.ArcRotateCamera(
       "camera",
-      new BABYLON.Vector3(-15, 10, -15),
+      Math.PI / 4,
+      1,
+      20,
+      BABYLON.Vector3.Zero(),
       this.scene
     );
+    // this.camera = new BABYLON.FreeCamera(
+    //   "camera",
+    //   new BABYLON.Vector3(-15, 10, -15),
+    //   this.scene
+    // );
     // sets where the camera is looking at.
     this.camera.setTarget(BABYLON.Vector3.Zero());
     // allows user to control camera.
