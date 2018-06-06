@@ -14,8 +14,8 @@ export default class Game {
     this.camera = new BABYLON.ArcRotateCamera(
       "camera",
       Math.PI / 4,
-      1,
-      20,
+      Math.PI / 3,
+      35,
       BABYLON.Vector3.Zero(),
       this.scene
     );
