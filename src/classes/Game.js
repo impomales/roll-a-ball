@@ -1,5 +1,6 @@
-import * as BABYLON from "babylonjs";
-import Ground from "./Ground";
+import * as BABYLON from 'babylonjs';
+import Ground from './Ground';
+import Cube from './Cube';
 
 export default class Game {
   constructor(canvasId) {
@@ -12,7 +13,7 @@ export default class Game {
     this.scene.ambientColor = BABYLON.Color3.White();
     // set up a camera.
     this.camera = new BABYLON.ArcRotateCamera(
-      "camera",
+      'camera',
       Math.PI / 4,
       Math.PI / 3,
       35,
@@ -30,15 +31,18 @@ export default class Game {
     this.camera.attachControl(this.engine.getRenderingCanvas(), true);
     // lighting.
     this.light = new BABYLON.HemisphericLight(
-      "light",
+      'light',
       new BABYLON.Vector3(0, 1, 0),
       this.scene
     );
     // box
-    this.cube = new BABYLON.Mesh.CreateBox("box", 1, this.scene);
+    this.cube = new BABYLON.Mesh.CreateBox('box', 1, this.scene);
     this.cube.position.y = 1;
-    this.ground = new Ground(20, this.scene);
+    // ground
+    this.ground = new Ground(20, this);
     this.ground.rotation.x = Math.PI / 2;
+    // cubes
+    this.cube2 = new Cube(0.5, this);
     // renders the scene 60 fps.
     this.engine.runRenderLoop(() => {
       this.scene.render();
