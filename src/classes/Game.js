@@ -1,6 +1,7 @@
 import * as BABYLON from 'babylonjs';
 import Ground from './Ground';
 import Cube from './Cube';
+import Player from './Player';
 
 const NUM_OF_CUBES = 10;
 const GROUND_SIZE = 20;
@@ -51,11 +52,14 @@ export default class Game {
       cube.rotation.z = Math.PI / 4;
       // RANDOM NUMBER BETWEEN MIN MAX
       const max = GROUND_SIZE / 2 - 1.5;
-      const min = - GROUND_SIZE / 2 + 1.5;
+      const min = -GROUND_SIZE / 2 + 1.5;
       cube.position.x = Math.random() * (max - min) + min;
       cube.position.z = Math.random() * (max - min) + min;
       this.cubes.push(cube);
     }
+    // player
+    this.player = new Player(1, this);
+    this.player.position = new BABYLON.Vector3(0, 1, 0);
     // renders the scene 60 fps.
     this.engine.runRenderLoop(() => {
       this.scene.render();
