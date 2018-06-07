@@ -2,6 +2,9 @@ import * as BABYLON from 'babylonjs';
 import Ground from './Ground';
 import Cube from './Cube';
 
+const NUM_OF_CUBES = 10;
+const GROUND_SIZE = 20;
+
 export default class Game {
   constructor(canvasId) {
     // get element from html file.
@@ -35,14 +38,24 @@ export default class Game {
       new BABYLON.Vector3(0, 1, 0),
       this.scene
     );
-    // box
-    this.cube = new BABYLON.Mesh.CreateBox('box', 1, this.scene);
-    this.cube.position.y = 1;
+
     // ground
-    this.ground = new Ground(20, this);
+    this.ground = new Ground(GROUND_SIZE, this);
     this.ground.rotation.x = Math.PI / 2;
     // cubes
-    this.cube2 = new Cube(0.5, this);
+    this.cubes = [];
+    for (let i = 0; i < NUM_OF_CUBES; i++) {
+      const cube = new Cube(0.35, this);
+      cube.position.y = 0.5;
+      cube.rotation.x = Math.PI / 4;
+      cube.rotation.z = Math.PI / 4;
+      // RANDOM NUMBER BETWEEN MIN MAX
+      const max = GROUND_SIZE / 2 - 1.5;
+      const min = - GROUND_SIZE / 2 + 1.5;
+      cube.position.x = Math.random() * (max - min) + min;
+      cube.position.z = Math.random() * (max - min) + min;
+      this.cubes.push(cube);
+    }
     // renders the scene 60 fps.
     this.engine.runRenderLoop(() => {
       this.scene.render();
