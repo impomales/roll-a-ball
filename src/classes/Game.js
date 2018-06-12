@@ -44,6 +44,17 @@ export default class Game {
     this.ground = new Ground(GROUND_SIZE, this);
     this.ground.rotation.x = Math.PI / 2;
     // cubes
+    this.placeCubes();
+    // player
+    this.player = new Player(1, this);
+    this.player.position = new BABYLON.Vector3(0, 0.5, 0);
+    // renders the scene 60 fps.
+    this.engine.runRenderLoop(() => {
+      this.scene.render();
+    });
+  }
+
+  placeCubes() {
     this.cubes = [];
     for (let i = 0; i < NUM_OF_CUBES; i++) {
       const cube = new Cube(0.35, this);
@@ -57,12 +68,5 @@ export default class Game {
       cube.position.z = Math.random() * (max - min) + min;
       this.cubes.push(cube);
     }
-    // player
-    this.player = new Player(1, this);
-    this.player.position = new BABYLON.Vector3(0, 0.5, 0);
-    // renders the scene 60 fps.
-    this.engine.runRenderLoop(() => {
-      this.scene.render();
-    });
   }
 }
