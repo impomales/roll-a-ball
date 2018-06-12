@@ -39,6 +39,15 @@ export default class Game {
       new BABYLON.Vector3(0, 1, 0),
       this.scene
     );
+    // directional light for shadows
+    this.dirLight = new BABYLON.DirectionalLight(
+      'dirLight',
+      new BABYLON.Vector3(1, 1, 1),
+      this.scene
+    );
+    this.dirLight.position = (1, 1, 1);
+    this.shadows = new BABYLON.ShadowGenerator(1024, dirLight);
+    this.shadows.useBlurExponentialShadowMap = true;
 
     // ground
     this.ground = new Ground(GROUND_SIZE, this);
