@@ -74,5 +74,7 @@ export default class Ground extends GameObject {
     southWall.material = material;
     eastWall.material = material;
     westWall.material = material;
+
+    this.receiveShadows = true;
   }
 }

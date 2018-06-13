@@ -32,5 +32,6 @@ export default class Player extends GameObject {
     material.opacityFresnelParameters.rightColor = BABYLON.Color3.Black();
 
     this.material = material;
+    game.shadows.getShadowMap().renderList.push(this);
   }
 }

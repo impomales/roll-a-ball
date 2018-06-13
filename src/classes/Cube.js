@@ -12,5 +12,6 @@ export default class Cube extends GameObject {
     material.specularColor = new BABYLON.Color3(0, 1, 0);
 
     this.material = material;
+    game.shadows.getShadowMap().renderList.push(this);
   }
 }
