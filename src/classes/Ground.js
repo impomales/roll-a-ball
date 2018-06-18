@@ -10,6 +10,16 @@ export default class Ground extends GameObject {
       depth: 0.05
     });
     vertexData.applyToMesh(this);
+
+    this.physicsImpostor = new BABYLON.PhysicsImpostor(
+      this,
+      BABYLON.PhysicsImpostor.BoxImpostor,
+      {
+        mass: 0,
+        restitution: 0.9
+      },
+      game.scene
+    );
     // create walls
     const northWall = new BABYLON.MeshBuilder.CreateBox(
       'wall',
@@ -76,5 +86,6 @@ export default class Ground extends GameObject {
     westWall.material = material;
 
     this.receiveShadows = true;
+
   }
 }

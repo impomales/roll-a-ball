@@ -40,7 +40,8 @@ export default class Player extends GameObject {
       BABYLON.PhysicsImpostor.SphereImpostor,
       {
         mass: 1,
-        friction: 0.9
+        friction: 0.9,
+        restitution: 0.9
       },
       game.scene
     );
