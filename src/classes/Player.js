@@ -33,5 +33,16 @@ export default class Player extends GameObject {
 
     this.material = material;
     game.shadows.getShadowMap().renderList.push(this);
+
+    // physics
+    this.physicsImpostor = new BABYLON.PhysicsImpostor(
+      this,
+      BABYLON.PhysicsImpostor.SphereImpostor,
+      {
+        mass: 1,
+        friction: 0.9
+      },
+      game.scene
+    );
   }
 }
