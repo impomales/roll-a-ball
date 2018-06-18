@@ -50,6 +50,9 @@ export default class Game {
     this.shadows.useBlurExponentialShadowMap = true;
     this.shadows.setTransparencyShadow(true);
 
+    // physics engine
+    this.scene.enablePhysics(new BABYLON.Vector3(0, -9.8, 0), new BABYLON.CannonJSPlugin());
+
     // ground
     this.ground = new Ground(GROUND_SIZE, this);
     this.ground.rotation.x = Math.PI / 2;
