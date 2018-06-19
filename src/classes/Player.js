@@ -45,5 +45,34 @@ export default class Player extends GameObject {
       },
       game.scene
     );
+
+    this.direction = BABYLON.Vector3.Zero();
+    // user input
+    window.addEventListener('keydown', event => {
+      switch (event.keyCode) {
+        case 87: // W
+          this.direction = new BABYLON.Vector3(0, 0, -1);
+          break;
+        case 65: // A
+          this.direction = new BABYLON.Vector3(1, 0, 0);
+          break;
+        case 83: // S
+          this.direction = new BABYLON.Vector3(0, 0, 1);
+          break;
+        case 68: // D
+          this.direction = new BABYLON.Vector3(-1, 0, 0);
+          break;
+        default:
+      }
+    })
+
+    window.addEventListener('keyup', event => {
+      this.direction = BABYLON.Vector3.Zero();
+    })
+
+    this.getScene().registerBeforeRender(() => {
+      // move player.
+      this.applyImpulse(this.direction, this.position);
+    });
   }
 }
