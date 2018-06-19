@@ -18,12 +18,13 @@ export default class Game {
     // set up a camera.
     this.camera = new BABYLON.ArcRotateCamera(
       'camera',
-      Math.PI / 4,
+      Math.PI / 2,
       Math.PI / 3,
-      35,
+      25,
       BABYLON.Vector3.Zero(),
       this.scene
     );
+
     // this.camera = new BABYLON.FreeCamera(
     //   "camera",
     //   new BABYLON.Vector3(-15, 10, -15),
