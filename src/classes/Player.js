@@ -39,7 +39,7 @@ export default class Player extends GameObject {
       this,
       BABYLON.PhysicsImpostor.SphereImpostor,
       {
-        mass: 1,
+        mass: 5,
         friction: 0.9,
         restitution: 0.9
       },
