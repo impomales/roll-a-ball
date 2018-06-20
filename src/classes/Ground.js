@@ -12,63 +12,8 @@ export default class Ground extends GameObject {
     vertexData.applyToMesh(this);
 
     this.physicsImpostor = this.makeStaticImposter(this, game.scene);
-    // create walls
-    const northWall = new BABYLON.MeshBuilder.CreateBox(
-      'wall',
-      {
-        width: size,
-        height: 1,
-        depth: 1.5
-      },
-      game.scene
-    );
-    northWall.position.y = -size / 2;
-    northWall.physicsImpostor = this.makeStaticImposter(northWall, game.scene);
-
-    const southWall = new BABYLON.MeshBuilder.CreateBox(
-      'wall',
-      {
-        width: size,
-        height: 1,
-        depth: 1.5
-      },
-      game.scene
-    );
-    southWall.position.y = size / 2;
-    southWall.physicsImpostor = this.makeStaticImposter(southWall, game.scene);
-
-    const eastWall = new BABYLON.MeshBuilder.CreateBox(
-      'wall',
-      {
-        width: size - 1,
-        height: 1,
-        depth: 1.5
-      },
-      game.scene
-    );
-    eastWall.rotation.z = Math.PI / 2;
-    eastWall.position.x = 0.5 - size / 2;
-    eastWall.physicsImpostor = this.makeStaticImposter(eastWall, game.scene);
-
-
-    const westWall = new BABYLON.MeshBuilder.CreateBox(
-      'wall',
-      {
-        width: size - 1,
-        height: 1,
-        depth: 1.5
-      },
-      game.scene
-    );
-    westWall.rotation.z = Math.PI / 2;
-    westWall.position.x = size / 2 - 0.5;
-    westWall.physicsImpostor = this.makeStaticImposter(westWall, game.scene);
-
-    // attaches wall meshes to the root game object.
-    northWall.parent = this;
-    southWall.parent = this;
-    westWall.parent = this;
-    eastWall.parent = this;
+    // make walls
+    this.makeWalls(game.scene, size);
 
     // materials
     const material = new BABYLON.StandardMaterial('groundMaterial', game.scene);
@@ -77,13 +22,71 @@ export default class Ground extends GameObject {
     material.ambientColor = new BABYLON.Color3(0.1, 0, 0);
 
     this.material = material;
-    northWall.material = material;
-    southWall.material = material;
-    eastWall.material = material;
-    westWall.material = material;
+    this.northWall.material = material;
+    this.southWall.material = material;
+    this.eastWall.material = material;
+    this.westWall.material = material;
 
     this.receiveShadows = true;
+  }
 
+  makeWalls(scene, size) {
+    // create walls
+    this.northWall = new BABYLON.MeshBuilder.CreateBox(
+      'wall',
+      {
+        width: size,
+        height: 1,
+        depth: 1.5
+      },
+      scene
+    );
+    this.northWall.position.y = -size / 2;
+    this.northWall.physicsImpostor = this.makeStaticImposter(this.northWall, scene);
+
+    this.southWall = new BABYLON.MeshBuilder.CreateBox(
+      'wall',
+      {
+        width: size,
+        height: 1,
+        depth: 1.5
+      },
+      scene
+    );
+    this.southWall.position.y = size / 2;
+    this.southWall.physicsImpostor = this.makeStaticImposter(this.southWall, scene);
+
+    this.eastWall = new BABYLON.MeshBuilder.CreateBox(
+      'wall',
+      {
+        width: size - 1,
+        height: 1,
+        depth: 1.5
+      },
+      scene
+    );
+    this.eastWall.rotation.z = Math.PI / 2;
+    this.eastWall.position.x = 0.5 - size / 2;
+    this.eastWall.physicsImpostor = this.makeStaticImposter(this.eastWall, scene);
+
+    this.westWall = new BABYLON.MeshBuilder.CreateBox(
+      'wall',
+      {
+        width: size - 1,
+        height: 1,
+        depth: 1.5
+      },
+      scene
+    );
+    this.westWall.rotation.z = Math.PI / 2;
+    this.westWall.position.x = size / 2 - 0.5;
+    this.westWall.physicsImpostor = this.makeStaticImposter(this.westWall, scene);
+
+    // attaches wall meshes to the root game object.
+    this.northWall.parent = this;
+    this.southWall.parent = this;
+    this.westWall.parent = this;
+    this.eastWall.parent = this;
   }
 
   makeStaticImposter(object, scene) {
