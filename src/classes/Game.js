@@ -61,7 +61,17 @@ export default class Game {
     this.placeCubes();
     // player
     this.player = new Player(1, this);
-    this.player.position = new BABYLON.Vector3(0, 0.5, 0);
+    this.player.position = new BABYLON.Vector3(0, 1, 0);
+
+    // check collisions before render.
+    this.scene.registerBeforeRender(() => {
+      this.cubes.forEach(cube => {
+        if (cube.intersectsMesh(this.player)) {
+          cube.isVisible = false
+        }
+      });
+    });
+
     // renders the scene 60 fps.
     this.engine.runRenderLoop(() => {
       this.scene.render();
