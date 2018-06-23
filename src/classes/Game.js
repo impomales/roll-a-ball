@@ -52,7 +52,10 @@ export default class Game {
     this.shadows.setTransparencyShadow(true);
 
     // physics engine
-    this.scene.enablePhysics(new BABYLON.Vector3(0, -9.8, 0), new BABYLON.CannonJSPlugin());
+    this.scene.enablePhysics(
+      new BABYLON.Vector3(0, -9.8, 0),
+      new BABYLON.CannonJSPlugin()
+    );
 
     // ground
     this.ground = new Ground(GROUND_SIZE, this);
@@ -65,11 +68,17 @@ export default class Game {
 
     // check collisions before render.
     this.scene.registerBeforeRender(() => {
-      this.cubes.forEach(cube => {
+      let idx;
+      this.cubes.forEach(((cube, i) => {
         if (cube.intersectsMesh(this.player)) {
-          cube.isVisible = false
+          cube.dispose();
+          idx = i;
         }
-      });
+      }));
+      if (idx !== undefined) this.cubes.splice(idx, 1);
+      document.getElementById('info').innerText = `Cubes left: ${
+        this.cubes.length
+      }`;
     });
 
     // renders the scene 60 fps.

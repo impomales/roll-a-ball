@@ -7,6 +7,17 @@ body {
   height: 100vh;
 }
 
+#info {
+  position: absolute;
+  background-color: #a0c4ff;
+  padding: 2em;
+  margin: 1.5em 1em;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 1px 2px 15px #777;
+}
+
 #gameCanvas {
   width: 100vw;
   height: 100vh;
